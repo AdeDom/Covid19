@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.sum.SumFragment">
+
+    <GridLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:columnCount="2"
+        android:rowCount="2">
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/update_date" />
+
+        <TextView
+            android:id="@+id/tv_update_date"
+            style="@style/TextView"
+            android:text="@string/update_date" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/last_data" />
+
+        <TextView
+            android:id="@+id/tv_last_data"
+            style="@style/TextView"
+            android:text="@string/last_data" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/source" />
+
+        <TextView
+            android:id="@+id/tv_source"
+            style="@style/TextView"
+            android:text="@string/source" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/province" />
+
+        <TextView
+            android:id="@+id/tv_province"
+            style="@style/TextView"
+            android:text="@string/province" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/nation" />
+
+        <TextView
+            android:id="@+id/tv_nation"
+            style="@style/TextView"
+            android:text="@string/nation" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/gender" />
+
+        <TextView
+            android:id="@+id/tv_gender"
+            style="@style/TextView"
+            android:text="@string/gender" />
+    </GridLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/ProgressBar" />
+
+</RelativeLayout>

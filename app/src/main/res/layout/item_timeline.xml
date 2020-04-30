@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    android:padding="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    android:background="#F0F0F0"
+    app:contentPadding="8dp">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="10">
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/date" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/TextView"
+            android:text="@string/date" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/new_confirmed" />
+
+        <TextView
+            android:id="@+id/tv_new_confirmed"
+            style="@style/TextView"
+            android:text="@string/new_confirmed" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/new_recovered" />
+
+        <TextView
+            android:id="@+id/tv_new_recovered"
+            style="@style/TextView"
+            android:text="@string/new_recovered" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/new_hospitalized" />
+
+        <TextView
+            android:id="@+id/tv_new_hospitalized"
+            style="@style/TextView"
+            android:text="@string/new_hospitalized" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/new_deaths" />
+
+        <TextView
+            android:id="@+id/tv_new_deaths"
+            style="@style/TextView"
+            android:text="@string/new_deaths" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/confirmed" />
+
+        <TextView
+            android:id="@+id/tv_confirmed"
+            style="@style/TextView"
+            android:text="@string/confirmed" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/recovered" />
+
+        <TextView
+            android:id="@+id/tv_recovered"
+            style="@style/TextView"
+            android:text="@string/recovered" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/hospitalized" />
+
+        <TextView
+            android:id="@+id/tv_hospitalized"
+            style="@style/TextView"
+            android:text="@string/hospitalized" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/deaths" />
+
+        <TextView
+            android:id="@+id/tv_deaths"
+            style="@style/TextView"
+            android:text="@string/deaths" />
+
+    </GridLayout>
+
+</androidx.cardview.widget.CardView>

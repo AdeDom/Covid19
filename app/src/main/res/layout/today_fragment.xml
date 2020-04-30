@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    tools:context=".ui.today.TodayFragment">
+
+    <GridLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:rowCount="6">
+
+        <TextView
+            android:id="@+id/tv_update_date"
+            style="@style/TextView"
+            android:layout_columnSpan="3"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/update_date" />
+
+        <TextView style="@style/TextView" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/person_old" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/person_new" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/confirmed" />
+
+        <TextView
+            android:id="@+id/tv_confirmed"
+            style="@style/TextView"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/tv_new_confirmed"
+            style="@style/TextView"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            tools:text="0" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/recovered" />
+
+        <TextView
+            android:id="@+id/tv_recovered"
+            style="@style/TextView"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/tv_new_recovered"
+            style="@style/TextView"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            tools:text="0" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/hospitalized" />
+
+        <TextView
+            android:id="@+id/tv_hospitalized"
+            style="@style/TextView"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/tv_new_hospitalized"
+            style="@style/TextView"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            tools:text="0" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/deaths" />
+
+        <TextView
+            android:id="@+id/tv_deaths"
+            style="@style/TextView"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/tv_new_deaths"
+            style="@style/TextView"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            tools:text="0" />
+
+    </GridLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/source" />
+
+        <TextView
+            android:id="@+id/tv_source"
+            style="@style/TextView"
+            android:text="@string/source" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/ProgressBar" />
+
+</RelativeLayout>
