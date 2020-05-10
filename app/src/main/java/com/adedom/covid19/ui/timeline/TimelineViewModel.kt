@@ -7,9 +7,9 @@ class TimelineViewModel(private val repository: Covid19Repository) : BaseViewMod
 
     val timeline = repository.getTimeline()
 
-    fun fetchTimeline() = ioThenMain(
-        { repository.fetchTimeline() },
-        { response -> response?.let { repository.saveTimeline(it) } }
+    fun fetchTimeline() = launchCallApi(
+        request = { repository.fetchTimeline() },
+        response = { response -> response?.let { repository.saveTimeline(it) } }
     )
 
 }

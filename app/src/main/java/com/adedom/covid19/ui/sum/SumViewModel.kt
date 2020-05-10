@@ -10,9 +10,9 @@ class SumViewModel(private val repository: Covid19Repository) : BaseViewModel() 
     val nation = repository.getNation()
     val province = repository.getProvince()
 
-    fun fetchSum() = ioThenMain(
-        { repository.fetchSum() },
-        { response ->
+    fun fetchSum() = launchCallApi(
+        request = { repository.fetchSum() },
+        response = { response ->
             response?.gender?.let { repository.saveGender(it) }
             response?.nation?.let { repository.saveNation(it) }
             response?.province?.let { repository.saveProvince(it) }

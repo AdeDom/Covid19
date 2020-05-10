@@ -11,11 +11,9 @@ import com.adedom.covid19.util.extension.hide
 import com.adedom.covid19.util.extension.show
 import kotlinx.android.synthetic.main.cases_fragment.*
 
-class CasesFragment : BaseFragment<CasesViewModel, CasesFactory>(R.layout.cases_fragment) {
+class CasesFragment : BaseFragment<CasesViewModel>(R.layout.cases_fragment) {
 
     override fun viewModel() = CasesViewModel::class.java
-
-    override fun factory() = CasesFactory(repository)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

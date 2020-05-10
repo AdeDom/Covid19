@@ -7,9 +7,9 @@ class TodayViewModel(private val repository: Covid19Repository) : BaseViewModel(
 
     val today = repository.getToday()
 
-    fun fetchToday() = ioThenMain(
-        { repository.fetchToday() },
-        { response -> response?.let { repository.saveToday(it) } }
+    fun fetchToday() = launchCallApi(
+        request = { repository.fetchToday() },
+        response = { response -> response?.let { repository.saveToday(it) } }
     )
 
 }

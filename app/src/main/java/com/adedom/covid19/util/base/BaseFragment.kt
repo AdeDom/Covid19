@@ -13,12 +13,9 @@ import com.adedom.covid19.data.networks.Covid19Api
 import com.adedom.covid19.data.networks.NetworkConnectionInterceptor
 import com.adedom.covid19.data.repositories.Covid19Repository
 
-abstract class BaseFragment<VM : ViewModel, F : ViewModelProvider.NewInstanceFactory>(
-    private val layout: Int
-) : Fragment() {
+abstract class BaseFragment<VM : ViewModel>(private val layout: Int) : Fragment() {
 
     protected lateinit var viewModel: VM
-    protected lateinit var repository: Covid19Repository
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,16 +25,14 @@ abstract class BaseFragment<VM : ViewModel, F : ViewModelProvider.NewInstanceFac
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        repository = Covid19Repository(
-            Covid19Api.invoke(NetworkConnectionInterceptor(requireContext())),
-            AppDatabase.invoke(requireContext())
-        )
-        viewModel = ViewModelProvider(this, factory()).get(viewModel())
+        val api = Covid19Api.invoke(NetworkConnectionInterceptor(requireContext()))
+        val db = AppDatabase.invoke(requireContext())
+        val repository = Covid19Repository(api, db)
+        val factory = BaseViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory).get(viewModel())
     }
 
     abstract fun viewModel(): Class<VM>
-
-    abstract fun factory(): F
 
     protected fun dialogError(message: String) = AlertDialog.Builder(requireContext()).apply {
         setTitle("Error")

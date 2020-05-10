@@ -12,9 +12,9 @@ class CasesViewModel(private val repository: Covid19Repository) : BaseViewModel(
     val cases: LiveData<Cases>
         get() = _cases
 
-    fun fetchCases() = ioThenMain(
-        { repository.fetchCases() },
-        { _cases.value = it }
+    fun fetchCases() = launchCallApi(
+        request = { repository.fetchCases() },
+        response = { _cases.value = it }
     )
 
 }

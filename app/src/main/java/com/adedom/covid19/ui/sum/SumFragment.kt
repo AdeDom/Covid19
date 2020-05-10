@@ -11,11 +11,9 @@ import com.adedom.covid19.util.extension.hide
 import com.adedom.covid19.util.extension.show
 import kotlinx.android.synthetic.main.sum_fragment.*
 
-class SumFragment : BaseFragment<SumViewModel, SumFactory>(R.layout.sum_fragment) {
+class SumFragment : BaseFragment<SumViewModel>(R.layout.sum_fragment) {
 
     override fun viewModel() = SumViewModel::class.java
-
-    override fun factory() = SumFactory(repository)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
