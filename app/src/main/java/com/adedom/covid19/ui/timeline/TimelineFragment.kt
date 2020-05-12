@@ -10,10 +10,11 @@ import com.adedom.covid19.util.base.BaseFragment
 import com.adedom.covid19.util.extension.hide
 import com.adedom.covid19.util.extension.show
 import kotlinx.android.synthetic.main.timeline_fragment.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TimelineFragment : BaseFragment<TimelineViewModel>(R.layout.timeline_fragment) {
+class TimelineFragment : BaseFragment(R.layout.timeline_fragment) {
 
-    override fun viewModel() = TimelineViewModel::class.java
+    val viewModel: TimelineViewModel by viewModel()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

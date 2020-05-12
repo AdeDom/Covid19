@@ -10,10 +10,11 @@ import com.adedom.covid19.util.extension.format
 import com.adedom.covid19.util.extension.hide
 import com.adedom.covid19.util.extension.show
 import kotlinx.android.synthetic.main.today_fragment.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TodayFragment : BaseFragment<TodayViewModel>(R.layout.today_fragment) {
+class TodayFragment : BaseFragment(R.layout.today_fragment) {
 
-    override fun viewModel() = TodayViewModel::class.java
+    val viewModel: TodayViewModel by viewModel()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
