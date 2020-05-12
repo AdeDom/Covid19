@@ -1,4 +1,4 @@
-package com.adedom.covid19.util
+package com.adedom.covid19
 
 import com.adedom.covid19.data.db.AppDatabase
 import com.adedom.covid19.data.networks.Covid19Api
