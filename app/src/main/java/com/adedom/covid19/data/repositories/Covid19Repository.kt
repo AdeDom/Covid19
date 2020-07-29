@@ -1,55 +1,45 @@
 package com.adedom.covid19.data.repositories
 
-import com.adedom.covid19.data.db.AppDatabase
-import com.adedom.covid19.data.db.entities.Gender
-import com.adedom.covid19.data.db.entities.Nation
-import com.adedom.covid19.data.db.entities.Province
-import com.adedom.covid19.data.db.entities.Today
-import com.adedom.covid19.data.networks.Covid19Api
-import com.adedom.covid19.data.networks.SafeApiRequest
-import com.adedom.covid19.data.db.entities.Sum
-import com.adedom.covid19.data.db.entities.Timeline
+import androidx.lifecycle.LiveData
+import com.adedom.covid19.data.db.entities.*
+import com.adedom.covid19.data.models.Cases
 
-class Covid19Repository(
-    private val api: Covid19Api,
-    private val db: AppDatabase
-) : SafeApiRequest() {
+interface Covid19Repository {
 
     //Today
-    suspend fun fetchToday() = apiRequest { api.fetchToday() }
+    suspend fun fetchToday(): Today
 
-    suspend fun saveToday(today: Today) = db.getTodayDao().saveToday(today)
+    suspend fun saveToday(today: Today)
 
-    fun getToday() = db.getTodayDao().getToday()
+    fun getToday(): LiveData<Today>
 
     //Timeline
-    suspend fun fetchTimeline() = apiRequest { api.fetchTimeline() }
+    suspend fun fetchTimeline(): Timeline
 
-    suspend fun saveTimeline(timeline: Timeline) =
-        db.getTimelineDao().saveTimeline(timeline)
+    suspend fun saveTimeline(timeline: Timeline)
 
-    fun getTimeline() = db.getTimelineDao().getTimeline()
+    fun getTimeline(): LiveData<Timeline>
 
     //Cases
-    suspend fun fetchCases() = apiRequest { api.fetchCases() }
+    suspend fun fetchCases(): Cases
 
     //Sum
-    suspend fun fetchSum() = apiRequest { api.fetchSum() }
+    suspend fun fetchSum(): Sum
 
-    suspend fun saveGender(gender: Gender) = db.getSumDao().saveGender(gender)
+    suspend fun saveGender(gender: Gender)
 
-    suspend fun saveNation(nation: Nation) = db.getSumDao().saveNation(nation)
+    suspend fun saveNation(nation: Nation)
 
-    suspend fun saveProvince(province: Province) = db.getSumDao().saveProvince(province)
+    suspend fun saveProvince(province: Province)
 
-    suspend fun saveSum(sum: Sum) = db.getSumDao().saveSum(sum)
+    suspend fun saveSum(sum: Sum): Long
 
-    fun getGender() = db.getSumDao().getGender()
+    fun getGender(): LiveData<Gender>
 
-    fun getNation() = db.getSumDao().getNation()
+    fun getNation(): LiveData<Nation>
 
-    fun getProvince() = db.getSumDao().getProvince()
+    fun getProvince(): LiveData<Province>
 
-    fun getSum() = db.getSumDao().getSum()
+    fun getSum(): LiveData<Sum>
 
 }

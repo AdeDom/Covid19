@@ -9,9 +9,8 @@ import okhttp3.Interceptor
 import okhttp3.Response
 
 class NetworkConnectionInterceptor(
-    context: Context
+    private val context: Context
 ) : Interceptor {
-    private val applicationContext = context.applicationContext
 
     override fun intercept(chain: Interceptor.Chain): Response {
         if (!isInternetAvailable())
@@ -22,7 +21,8 @@ class NetworkConnectionInterceptor(
     @Suppress("DEPRECATION")
     private fun isInternetAvailable(): Boolean {
         var result = false
-        val connectivityManager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+        val connectivityManager = context.applicationContext
+            .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
         connectivityManager?.let { cm ->
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 cm.getNetworkCapabilities(connectivityManager.activeNetwork)?.apply {

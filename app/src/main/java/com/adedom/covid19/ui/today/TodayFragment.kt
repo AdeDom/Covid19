@@ -3,29 +3,25 @@ package com.adedom.covid19.ui.today
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.lifecycle.Observer
 import com.adedom.covid19.R
-import com.adedom.covid19.util.base.BaseFragment
+import com.adedom.covid19.base.BaseFragment
 import com.adedom.covid19.util.extension.format
 import com.adedom.covid19.util.extension.hide
 import com.adedom.covid19.util.extension.show
+import com.adedom.covid19.viewmodel.TodayViewModel
 import kotlinx.android.synthetic.main.today_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TodayFragment : BaseFragment(R.layout.today_fragment) {
 
-    val viewModel: TodayViewModel by viewModel()
+    val viewModel by viewModel<TodayViewModel>()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        progress_bar.show()
-        viewModel.fetchToday()
-
-        viewModel.today.observe(viewLifecycleOwner, Observer { response ->
-            if (response == null) return@Observer
+        viewModel.today.observe { response ->
+            if (response == null) return@observe
             val (_, updateDate, confirmed, recovered, hospitalized, deaths, newConfirmed, newRecovered, newHospitalized, newDeaths, source, _, _) = response
-            progress_bar.hide()
             tv_update_date.text = updateDate
             tv_confirmed.text = confirmed?.format()
             tv_new_confirmed.text = newConfirmed?.format()
@@ -42,13 +38,17 @@ class TodayFragment : BaseFragment(R.layout.today_fragment) {
                     startActivity(intent)
                 }
             }
+        }
 
-        })
+        viewModel.state.observe { state ->
+            if (state.loading) progress_bar.show() else progress_bar.hide()
+        }
 
-        viewModel.error.observe(viewLifecycleOwner, Observer {
-            progress_bar.hide()
-            dialogError(it)
-        })
+        viewModel.attachFirstTime.observe {
+            if (savedInstanceState == null) viewModel.fetchToday()
+        }
+
+        viewModel.error.observeError()
     }
 
 }

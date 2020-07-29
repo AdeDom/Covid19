@@ -3,18 +3,18 @@ package com.adedom.covid19.ui.cases
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adedom.covid19.R
-import com.adedom.covid19.util.base.BaseFragment
+import com.adedom.covid19.base.BaseFragment
 import com.adedom.covid19.util.extension.hide
 import com.adedom.covid19.util.extension.show
+import com.adedom.covid19.viewmodel.CasesViewModel
 import kotlinx.android.synthetic.main.cases_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CasesFragment : BaseFragment(R.layout.cases_fragment) {
 
-    val viewModel: CasesViewModel by viewModel()
+    val viewModel by viewModel<CasesViewModel>()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -25,13 +25,10 @@ class CasesFragment : BaseFragment(R.layout.cases_fragment) {
             adapter = adt
         }
 
-        progress_bar.show()
-        viewModel.fetchCases()
+        viewModel.state.observe { state ->
+            if (state.loading) progress_bar.show() else progress_bar.hide()
 
-        viewModel.cases.observe(viewLifecycleOwner, Observer { response ->
-            val (data, lastData, updateDate, source, _, _) = response
-            progress_bar.hide()
-
+            val (data, lastData, updateDate, source, _, _) = state.cases
             tv_update_date.text = updateDate
             tv_last_data.text = lastData
             tv_source.text = source
@@ -43,12 +40,13 @@ class CasesFragment : BaseFragment(R.layout.cases_fragment) {
             }
 
             data?.let { adt.setList(it) }
-        })
+        }
 
-        viewModel.error.observe(viewLifecycleOwner, Observer {
-            progress_bar.hide()
-            dialogError(it)
-        })
+        viewModel.attachFirstTime.observe {
+            if (savedInstanceState == null) viewModel.fetchCases()
+        }
+
+        viewModel.error.observeError()
 
     }
 

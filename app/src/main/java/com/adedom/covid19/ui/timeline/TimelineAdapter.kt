@@ -3,7 +3,7 @@ package com.adedom.covid19.ui.timeline
 import android.view.View
 import com.adedom.covid19.R
 import com.adedom.covid19.data.models.TimelineData
-import com.adedom.covid19.util.base.BaseRecyclerView
+import com.adedom.covid19.base.BaseRecyclerView
 import com.adedom.covid19.util.extension.format
 import kotlinx.android.synthetic.main.item_timeline.view.*
 
