@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
+var ApplicationDispatcher: CoroutineDispatcher = Dispatchers.Main
+
 abstract class BaseViewModel<S : Any>(private val initialState: S) : ViewModel(), CoroutineScope {
 
     private val job = SupervisorJob()
@@ -21,7 +23,7 @@ abstract class BaseViewModel<S : Any>(private val initialState: S) : ViewModel()
     val attachFirstTime: LiveData<Unit> = _attachFirstTime
 
     override val coroutineContext: CoroutineContext
-        get() = job + Dispatchers.Main + exceptionHandler
+        get() = job + ApplicationDispatcher + exceptionHandler
 
     override fun onCleared() {
         coroutineContext.cancel()
