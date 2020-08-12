@@ -1,6 +1,9 @@
-package com.adedom.covid19
+package com.adedom.covid19.util
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CancellableContinuation
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Delay
+import kotlinx.coroutines.InternalCoroutinesApi
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.resume
 
